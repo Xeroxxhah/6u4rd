@@ -31,6 +31,7 @@ Don't ask me why i did it (._.).
 - Here is a guide how you can setup python script as windows service [Guide](https://www.mssqltips.com/sqlservertip/7325/how-to-run-a-python-script-windows-service-nssm/).
 - No need to create exe.
 - you have to create two services one for (web.pyw) and 2nd for (mailer.pyw).
+- When setting up services goto log on tab in nssm and setup services as admin.
 
 ### Usage
 - Once downloaded and setup correctly you will receive receive a ngrok link to your mail from your dummy account.
