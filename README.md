@@ -35,7 +35,8 @@ Don't ask me why i did it (._.).
 ### Usage
 - Once downloaded and setup correctly you will receive receive a ngrok link to your mail from your dummy account.
 - Open the link and press "visit site".
-- you'll be presented with default apache page, press p and a login field will appear.
+- you'll be presented with default apache page, press p or press ubuntu icon (for android) and a login field will appear.
+- you can make is disappear by pressing h.
 - Default password is ```pass```, but if you changed the password enter password.
 - You'll be presented with an ugly dashboard.
 - Enjoy...
