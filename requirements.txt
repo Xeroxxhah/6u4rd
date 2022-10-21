@@ -1,0 +1,8 @@
+pyAesCrypt
+pyautogui
+Pillow
+pywin32
+flask
+opencv-python
+pyngrok
+waitress

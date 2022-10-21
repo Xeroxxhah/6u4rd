@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Console</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('consolee')}}">6u4rd</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">{{app_auth.code_name}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <dev class="err">
+    {% if error %}
+
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>
+        {{error}}
+      </div>
+    </div>
+
+    {% endif %}
+
+    {% if message %}
+
+    <div class="alert alert-success d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>
+        {{message}}
+      </div>
+    </div>
+
+    {% endif %}
+  </dev>
+
+
+  <h1>Console</h1>
+
+  <!--form start-->
+
+  <div class="container-xl">
+    <form action="{{ url_for('consolee') }}" method="POST">
+      <div class="mb-3">
+        <input type="hidden" value="lock" name="command">
+        <button type="submit" class="btn btn-primary">Lock</button>
+      </div>
+    </form>
+  
+    <form action="{{ url_for('consolee') }}" method="POST">
+      <div class="mb-3">
+        <input type="hidden" value="shutdown" name="command">
+        <button type="submit" class="btn btn-primary">Shutdown</button>
+      </div>
+    </form>
+  
+    <form action="{{ url_for('consolee') }}" method="POST">
+      <div class="mb-3">
+        <input type="hidden" value="getss" name="command">
+        <button type="submit" class="btn btn-primary">Take Screenshot</button>
+      </div>
+    </form>
+    
+    <form action="{{ url_for('consolee') }}" method="POST">
+      <div class="mb-3">
+        <input type="hidden" value="showss" name="command">
+        <button type="submit" class="btn btn-primary">Show All Screenshots</button>
+      </div>
+    </form>
+
+  </div>
+
+
+
+  
+  <br>
+  <br>
+  <div class="container-md">
+    <h3>Change Windows Password</h3>
+    <form action="{{ url_for('consolee') }}" method="POST">
+      <input type="hidden" value="change-password" name="command">
+      <label for="inputPassword5" class="form-label">Username</label>
+        <input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="username" placeholder="Username">
+      <label for="inputPassword5" class="form-label">New Password</label>  
+        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="new-password" placeholder="New Password">
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  
+
+
+  <!--form end-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
