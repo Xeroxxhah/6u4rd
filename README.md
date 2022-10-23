@@ -21,7 +21,7 @@ Don't ask me why i did it (._.).
 - 4th: ```Setup Dummy Account (Gmail)```
 - 5th: ```Get ngrok token```
 - 5th  ```python3 6u4rd.py```
-- 6th  ```Setup as Windows service```
+
 
 
 ### Get ngrok token
@@ -34,12 +34,18 @@ Don't ask me why i did it (._.).
 - Follow these steps: [App Password Guide](https://support.google.com/mail/answer/185833?hl=en)
 
 
-### Setting up as windows service
-- Download nssm from [here](https://nssm.cc/download).
-- Here is a guide how you can setup python script as windows service [Guide](https://www.mssqltips.com/sqlservertip/7325/how-to-run-a-python-script-windows-service-nssm/).
-- No need to create exe.
-- you have to create two services one for (web.pyw) and 2nd for (mailer.pyw).
-- When setting up services goto log on tab in nssm and setup services as admin.
+### Setting up as Schedule Task
+- Open Schedule Task.
+- Create a Basic task.
+- Name the task (6u4rd).
+- On Trigger click on "when i log on".
+- Action: Start a program.
+- Browse for web.pyw script.
+- check the properties check box.
+- in properties check to run with highiest privs and also check the hidden check box.
+- Under condition tab uncheck only AC power check box.
+- Create another task for mailer.pyw with same settings.
+
 
 
 ### Usage
