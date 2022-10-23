@@ -13,18 +13,26 @@ Don't ask me why i did it (._.).
 
 # Installation & Usage:
 
+
 # Follow these steps: 
 - 1st: ```git clone https://github.com/Xeroxxhah/6u4rd.git```
 - 2nd: ```cd 6u4rd```
 - 3rd: ```pip install -r requirements.txt```
 - 4th: ```Setup Dummy Account (Gmail)```
+- 5th: ```Get ngrok token```
 - 5th  ```python3 6u4rd.py```
 - 6th  ```Setup as Windows service```
+
+
+### Get ngrok token
+- Sign up for [ngrok](https://ngrok.com/).
+- copy "ngrok config add-authtoken <token>"
 
 
 ### Setting up a Dummy email account
 - Create a new dummy gmail account.
 - Follow these steps: [App Password Guide](https://support.google.com/mail/answer/185833?hl=en)
+
 
 ### Setting up as windows service
 - Download nssm from [here](https://nssm.cc/download).
@@ -32,6 +40,7 @@ Don't ask me why i did it (._.).
 - No need to create exe.
 - you have to create two services one for (web.pyw) and 2nd for (mailer.pyw).
 - When setting up services goto log on tab in nssm and setup services as admin.
+
 
 ### Usage
 - Once downloaded and setup correctly you will receive receive a ngrok link to your mail from your dummy account.
