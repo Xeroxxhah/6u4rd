@@ -7,7 +7,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![releases](https://img.shields.io/github/release/Xeroxxhah/6u4rd.svg)](https://github.com/Xeroxxhah/6u4rd/releases)
 
-Your personal backdoor for your device.
+Your backdoor for your device. It is a simple utility when it is up and running; you get an email every hour with a unique link. You are presented with a hideous dashboard; you can control your device using this dashboard.
 
 Don't ask me why i did it (._.).
 
@@ -56,6 +56,14 @@ Don't ask me why i did it (._.).
 - Default password is ```pass```, but if you changed the password enter password.
 - You'll be presented with an ugly dashboard.
 - Enjoy...
+
+
+### Features
+- Shutdown your device
+- Lock your device 
+- Take screenshot
+- Channge password ofyour device
+- More features coming
 
 ### Bug report
 Found any bug!
