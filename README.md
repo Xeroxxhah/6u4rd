@@ -62,7 +62,9 @@ Don't ask me why i did it (._.).
 - Shutdown your device
 - Lock your device 
 - Take screenshot
-- Channge password ofyour device
+- Channge password of your device
+- webshell
+- geo information
 - More features coming
 
 ### Bug report
