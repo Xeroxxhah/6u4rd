@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Console</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('consolee')}}">6u4rd</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    
+    
+    <h1>Geo Stuff</h1>
+
+    <div class="alert alert-warning" role="alert">
+      Warning: All information related to location is IP Address dependent.
+    </div>
+    
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">IP</th>
+          <th scope="col">{{geo.IP}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Continent Name</th>
+          <td>{{geo.continent_name}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Country Name</th>
+          <td>{{geo.country_name}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Country Capital</th>
+          <td>{{geo.country_capital}}</td>
+        </tr>
+        <tr>
+          <th scope="row">State/Province</th>
+          <td>{{geo.state}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Latitude</th>
+          <td>{{geo.latitude}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Longitude</th>
+          <td>{{geo.longitude}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

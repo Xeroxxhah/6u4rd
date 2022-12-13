@@ -9,13 +9,26 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
+<style>
+
+  #dash{
+
+    text-align: center;
+  }
+</style>
+
+
+
+
+
+
 <body>
 
 
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{url_for('consolee')}}">6u4rd</a>
+      <a class="navbar-brand" href="{{url_for('login')}}">6u4rd</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,7 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Home</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -69,38 +82,78 @@
   </dev>
 
 
-  <h1>Console</h1>
+  <h1 id="dash">Dashboard</h1>
 
   <!--form start-->
 
-  <div class="container-xl">
-    <form action="{{ url_for('consolee') }}" method="POST">
-      <div class="mb-3">
-        <input type="hidden" value="lock" name="command">
-        <button type="submit" class="btn btn-primary">Lock</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="lock" name="command">
+            <button type="submit" class="btn btn-primary ">Lock</button>
+          </div>
+        </form>
+      
       </div>
-    </form>
-  
-    <form action="{{ url_for('consolee') }}" method="POST">
-      <div class="mb-3">
-        <input type="hidden" value="shutdown" name="command">
-        <button type="submit" class="btn btn-primary">Shutdown</button>
+      <div class="col-sm">
+        
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="shutdown" name="command">
+            <button type="submit" class="btn btn-primary ">Shutdown</button>
+          </div>
+        </form>
+
       </div>
-    </form>
-  
-    <form action="{{ url_for('consolee') }}" method="POST">
-      <div class="mb-3">
-        <input type="hidden" value="getss" name="command">
-        <button type="submit" class="btn btn-primary">Take Screenshot</button>
+      <div class="col-sm">
+      
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="getss" name="command">
+            <button type="submit" class="btn btn-primary ">Take Screenshot</button>
+          </div>
+        </form>
+      
       </div>
-    </form>
-    
-    <form action="{{ url_for('consolee') }}" method="POST">
-      <div class="mb-3">
-        <input type="hidden" value="showss" name="command">
-        <button type="submit" class="btn btn-primary">Show All Screenshots</button>
+      <div class="col-sm">
+        
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="showss" name="command">
+            <button type="submit" class="btn btn-primary ">Show All Screenshots</button>
+          </div>
+        </form>
+
       </div>
-    </form>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">  
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="geo-stuff" name="command">
+            <button type="submit" class="btn btn-primary ">Geo Stuff</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-sm">  
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="shell" name="command">
+            <button type="submit" class="btn btn-primary ">Webshell</button>
+          </div>
+        </form>
+      </div>
+
+
+
+    </div>
+
+
 
   </div>
 

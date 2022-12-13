@@ -2,6 +2,7 @@ import getpass
 from core.auth import Auth
 from core.mail import Mailer
 from core.misc import Misc
+from core.version import Version
 from pyngrok import ngrok
 import secrets
 
@@ -10,6 +11,7 @@ helper = Misc()
 dummy_password = 'pass' 
 auth = Auth(dummy_password)
 mailer = Mailer()
+version = Version()
 app_auth = None
 email= ''
 password = ''
@@ -32,7 +34,9 @@ if auth.is_first():
         Warning: Sender's Email address and password are being stored in plain text. 
         Please do NOT use your personal email address and password instead user DUMMY email account.
         I understand the risks and i am not using my personal information. (Y/N): 
+        
         """)
+        print("Sender's email info: \n")
         if ch.lower() == "y":
             email = input("Enter your email address: ")
             password = getpass.getpass("Enter your password: ")
@@ -59,6 +63,12 @@ if auth.is_first():
         print("Run as administrator")
         quit()
 
+print(f'Version: {version.currentVersion}')
+
+if not version.IsUpdated():
+    print(f'New version available: {version.updatedVersion}')
+
+
 print("Code Name: {}".format(auth.code_name))
 
 
@@ -75,8 +85,7 @@ def change_auth_key(old_key,new_key):
             ch = input("""
             Warning: Sender's Email address and password are being stored in plain text. 
             Please do NOT use your personal email address and password instead user DUMMY email account.
-            I understand the risks and i am not using my personal information. (Y/N): 
-            """)
+            I understand the risks and i am not using my personal information. (Y/N): """)
             if ch.lower() == "y":
                 email = input("Enter your email address: ")
                 password = getpass.getpass("Enter your password: ")

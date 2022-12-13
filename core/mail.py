@@ -1,4 +1,3 @@
-from re import I
 import smtplib, ssl
 from email.message import EmailMessage 
 from core.misc import Misc

