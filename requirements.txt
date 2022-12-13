@@ -6,3 +6,5 @@ flask
 opencv-python
 pyngrok
 waitress
+bs4
+requests

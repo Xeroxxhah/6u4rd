@@ -63,6 +63,8 @@ Don't ask me why i did it (._.).
 - Lock your device 
 - Take screenshot
 - Channge password ofyour device
+- webshell
+- geo information
 - More features coming
 
 ### Bug report
