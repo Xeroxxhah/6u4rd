@@ -62,8 +62,6 @@ Don't ask me why i did it (._.).
 - Shutdown your device
 - Lock your device 
 - Take screenshot
-<<<<<<< HEAD
-- Channge password of your device
 - Channge password of your device
 - webshell
 - geo information
