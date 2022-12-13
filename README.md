@@ -62,7 +62,11 @@ Don't ask me why i did it (._.).
 - Shutdown your device
 - Lock your device 
 - Take screenshot
+<<<<<<< HEAD
 - Channge password ofyour device
+=======
+- Channge password of your device
+>>>>>>> 4860f714f8624dd23cdae7a192f4ff80e55580ed
 - webshell
 - geo information
 - More features coming
