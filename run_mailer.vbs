@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "py mailer.py",0,True
