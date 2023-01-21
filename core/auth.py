@@ -74,12 +74,4 @@ class Auth():
 
     def getcodename(self):
         return helper.config_parser('code_name')
-            
-
-
-
-    
-
-    
-    
 

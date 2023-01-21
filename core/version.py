@@ -5,7 +5,7 @@ class Version():
 
     def __init__(self):
 
-        self.currentVersion = 'v0.2.0'
+        self.currentVersion = 'v0.2.2'
         try:
             self.updatedVersion = str(requests.get('https://api.github.com/repos/Xeroxxhah/6u4rd/releases/latest').json().get('body'))
         except Exception:

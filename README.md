@@ -65,6 +65,7 @@ Don't ask me why i did it (._.).
 - Channge password of your device
 - webshell
 - geo information
+- Take picture from front cam
 - More features coming
 
 ### Bug report

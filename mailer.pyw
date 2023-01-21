@@ -1,7 +1,11 @@
 from core.mail import Mailer
-from pyngrok import ngrok
+from pyngrok import ngrok 
+from pyngrok.conf import PyngrokConfig
 from core.portal import App
 from time import sleep
+import pyngrok
+
+
 
 app = App()
 

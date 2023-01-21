@@ -5,6 +5,7 @@ from core.misc import Misc
 from core.version import Version
 from pyngrok import ngrok
 import secrets
+import sys
 
 
 helper = Misc()
@@ -17,7 +18,12 @@ email= ''
 password = ''
 receiver_mail = ''
 
-helper.config_write()
+try:
+    helper.config_write()
+except PermissionError:
+    print('Run as Administrator')
+    sys.exit(1)
+
 
 if auth.is_first():
     print("Welcome to 6u4rd")
@@ -61,7 +67,7 @@ if auth.is_first():
         helper.config_write(host=host,port=port,code_name=code_name,auth_path=auth_path,integ_path=integ_path,sender_mail=email,sender_password=password,receiver_mail=receiver_mail,app_sk=app_sk)
     except PermissionError:
         print("Run as administrator")
-        quit()
+        sys.exit(1)
 
 print(f'Version: {version.currentVersion}')
 
@@ -116,7 +122,7 @@ def main():
         new_key = getpass.getpass("new key: ")
         change_auth_key(old_key,new_key)
     elif option == "3":
-        exit()
+        sys.exit(0)
     elif option == "2":
         key = getpass.getpass("Enter key: ")
         delete_auth = Auth(key)

