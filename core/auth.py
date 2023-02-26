@@ -2,6 +2,8 @@ import hashlib
 import pyAesCrypt
 import os
 from .misc import Misc
+import random
+from .mail import EmailSender
 
 helper = Misc()
 
@@ -10,6 +12,7 @@ class Auth():
     def __init__(self,authkey,code_name = helper.gethost()):
         self.authkey = authkey
         self.isAuthenticated = False
+        self.is_2fa_enabled = bool(helper.config_parser('2fa_enabled'))
         self.code_name = code_name
         self.auth_path = helper.config_parser('auth_path')
         self.integ_path = helper.config_parser('integ_path')
@@ -74,4 +77,47 @@ class Auth():
 
     def getcodename(self):
         return helper.config_parser('code_name')
+
+
+class TwoFactorAuth:
+
+    def __init__(self):
+
+        self.key_size = 6
+        self.only_nums = False
+        self.__key = None
+        self.mailer = EmailSender()
+
+    @property
+    def key(self):
+        return self.__key
+
+
+    @key.setter
+    def key(self):
+        raise ValueError("Cannot set `key`")
+
+
+    def key_gen(self):
+        
+        if self.only_nums:
+            key_list = ["".join([str(random.randint(0,9)) for _ in range(self.key_size) ]) for _ in range(self.key_size)]
+            key = "".join(["".join(key_list[i][random.randint(0,self.key_size - 1)]) for i in range(6)])
+            self.__key = key
+        else:
+            key_list = ["".join([str(random.randint(0,9)) for _ in range(self.key_size) ]) for _ in range(self.key_size)]
+            key_phase1 = "".join(["".join(key_list[i]) for i in range(6)])
+            key = hashlib.sha256(key_phase1.encode()).hexdigest()[0:self.key_size]
+            self.__key = key
+
+    def verify_key(self, key):
+        return (True if hashlib.sha256(key.encode()).hexdigest() == hashlib.sha256(self.__key.encode()).hexdigest() else False)
+
+    def send_key(self):
+        self.mailer.send_email('6u4rd OTP', f'6u4rd OTP: {self.__key}')
+    
+
+
+
+ 
 

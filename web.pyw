@@ -4,7 +4,7 @@ import os
 import base64
 from core.c2 import CommandAndControl
 from core.misc import Misc
-from core.auth import Auth
+from core.auth import Auth, TwoFactorAuth
 from core.portal import App
 from flask import  render_template, request, url_for, redirect
 from waitress import serve
@@ -16,6 +16,7 @@ app_instance = app.create_app()
 c2 = CommandAndControl()
 helper = Misc()
 app_auth = Auth('dummypass')
+mfa = TwoFactorAuth()
 
 @app_instance.route('/', methods=['GET'])
 def index():
@@ -33,8 +34,39 @@ def login():
         if not app_auth.isAuthenticated:
             error = 'Invalid Credentials. Please try again.'
         else:
-            return render_template('console.html', app_auth=app_auth)
+            if app_auth.is_2fa_enabled:
+                return redirect(url_for('twofactorauth'))
+            return redirect(url_for('dashboard'))
     return render_template('apache.html', error=error)
+
+
+@app_instance.route('/dashboard', methods=['GET'])
+def dashboard():
+    if app_auth.isAuthenticated:
+        return render_template('console.html', app_auth=app_auth)
+    else:
+        return redirect(url_for('login'))
+
+@app_instance.route('/2FA', methods=['GET','POST'])
+def twofactorauth():
+    global app_auth
+    app_auth.revoke_authentication()
+    if app_auth.is_2fa_enabled:
+        if request.method == 'POST':
+            code = request.form['2facode']
+            if mfa.verify_key(code):
+                app_auth.isAuthenticated = True
+                return redirect(url_for('dashboard'))
+            else:
+                error='Wrong 2FA Code.'
+                app_auth.revoke_authentication()
+                return render_template('apache.html', error=error)
+        else:
+            mfa.key_gen()
+            mfa.send_key()
+            return render_template('2factor.html')
+    else:
+        return redirect(url_for('index'))
 
 
 @app_instance.route('/consolee', methods=['GET', 'POST'])

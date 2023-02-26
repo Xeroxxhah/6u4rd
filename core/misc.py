@@ -19,7 +19,8 @@ class Misc():
             "sender_mail":"",
             "sender_password":"",
             "receiver_mail":"",
-            "app_sk": secrets.token_hex(16)
+            "app_sk": secrets.token_hex(16),
+            "2fa_enabled": "False"
         }
 
     def getip(self):
@@ -52,7 +53,8 @@ class Misc():
     ,sender_mail='',
     sender_password='',
     receiver_mail='',
-    app_sk = secrets.token_hex(16)
+    app_sk = secrets.token_hex(16),
+    mfa_enabled = "False"
     ):
         self.config["host"]=host
         self.config["port"]=port
@@ -63,6 +65,7 @@ class Misc():
         self.config["sender_password"]=sender_password
         self.config["receiver_mail"]=receiver_mail
         self.config["app_sk"]=app_sk
+        self.config["2fa_enabled"]=mfa_enabled
 
         json_object = json.dumps(self.config, indent=4)
 

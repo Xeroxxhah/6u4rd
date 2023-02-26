@@ -1,6 +1,6 @@
 import getpass
 from core.auth import Auth
-from core.mail import Mailer
+from core.mail import EmailSender
 from core.misc import Misc
 from core.version import Version
 from pyngrok import ngrok
@@ -11,7 +11,7 @@ import sys
 helper = Misc()
 dummy_password = 'pass' 
 auth = Auth(dummy_password)
-mailer = Mailer()
+mailer = EmailSender()
 version = Version()
 app_auth = None
 email= ''
@@ -44,7 +44,7 @@ if auth.is_first():
         """)
         print("Sender's email info: \n")
         if ch.lower() == "y":
-            email = input("Enter your email address: ")
+            email = input("Enter your dummy email address: ")
             password = getpass.getpass("Enter your password: ")
             receiver_mail = input("Enter receiver email address: ")
         else:
@@ -64,7 +64,14 @@ if auth.is_first():
         integ_path = helper.config["integ_path"] if len(integ_path) == 0 else integ_path
         app_sk = secrets.token_hex(16)
         print(f"FLASK SECRET KEY: {app_sk}")
-        helper.config_write(host=host,port=port,code_name=code_name,auth_path=auth_path,integ_path=integ_path,sender_mail=email,sender_password=password,receiver_mail=receiver_mail,app_sk=app_sk)
+        print('='*20+'2FA Settings'+'='*20)
+        mfa = input('Do you want to enable 2FA? \n2FA code will be sent to oyu on your receiver email address. (Y/N):')
+        if mfa.lower() == 'y':
+            mfa = "True"
+        else:
+            mfa = "False"
+
+        helper.config_write(host=host,port=port,code_name=code_name,auth_path=auth_path,integ_path=integ_path,sender_mail=email,sender_password=password,receiver_mail=receiver_mail,app_sk=app_sk, mfa_enabled=mfa)
     except PermissionError:
         print("Run as administrator")
         sys.exit(1)

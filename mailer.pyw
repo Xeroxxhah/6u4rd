@@ -1,9 +1,8 @@
-from core.mail import Mailer
+from core.mail import EmailSender
 from pyngrok import ngrok 
-from pyngrok.conf import PyngrokConfig
 from core.portal import App
 from time import sleep
-import pyngrok
+
 
 
 
@@ -11,12 +10,8 @@ app = App()
 
 def send_ngrok_link(ngrok_link):    
     ngrok_tunnel_url = f"ngrok url: {ngrok_link}"
-    mailer = Mailer()
-    mailer.get_values()
-    mailer.get_ngrok_link(ngrok_tunnel_url)
-    #print(mailer.ngrok_link)
-    mailer.sendmail()
-
+    mailer = EmailSender()
+    mailer.send_email('ngrok url 6u4rd', ngrok_tunnel_url)
 
 def main():
     while True:

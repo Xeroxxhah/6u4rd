@@ -44,7 +44,7 @@ Don't ask me why i did it (._.).
 - check the properties check box.
 - in properties check to run with highiest privs and also check the hidden check box.
 - Under condition tab uncheck only AC power check box.
-- Create another task for run_mailer.vbs with same settings.
+- Create another task for mailer.pyw with same settings.
 
 
 
@@ -66,6 +66,7 @@ Don't ask me why i did it (._.).
 - webshell
 - geo information
 - Take picture from front cam
+- 2FA option availabe
 - More features coming
 
 ### Bug report
