@@ -100,18 +100,27 @@ def change_auth_key(old_key,new_key):
             Please do NOT use your personal email address and password instead user DUMMY email account.
             I understand the risks and i am not using my personal information. (Y/N): """)
             if ch.lower() == "y":
-                email = input("Enter your email address: ")
+                email = input("Enter your dummy email address: ")
                 password = getpass.getpass("Enter your password: ")
                 receiver_mail = input("Enter receiver email address: ")
                 app_sk = secrets.token_hex(16)
                 print(f"FLASK SECRET KEY: {app_sk}")
-                helper.config_write(sender_mail=email,sender_password=password,receiver_mail=receiver_mail,app_sk=app_sk)
+
+                print('='*20+'2FA Settings'+'='*20)
+                mfa = input('Do you want to enable 2FA? \n2FA code will be sent to oyu on your receiver email address. (Y/N):')
+                if mfa.lower() == 'y':
+                    mfa = "True"
+                else:
+                    mfa = "False"
+                
+                helper.config_write(sender_mail=email,sender_password=password,receiver_mail=receiver_mail,app_sk=app_sk,mfa_enabled=mfa)
                 print('Configuration Saved successfully...')
             else:
                 print("Quiting...")
                 quit()
         else:
             print("[-] Authentication failed")
+            quit()
     except PermissionError:
         print("[-] Run as administrator")
         quit()
