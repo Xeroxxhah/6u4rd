@@ -11,6 +11,8 @@ Your backdoor for your device. It is a simple utility when it is up and running;
 
 Don't ask me why i did it (._.).
 
+![DEMO screenshot](https://github.com/Xeroxxhah/6u4rd/blob/master/demo.png)
+
 # Installation & Usage:
 
 
